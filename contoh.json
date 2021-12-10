@@ -1,0 +1,121 @@
+[
+    {
+        "QuestionNo": 1,
+        "Answer": false,
+        "Stroke": true,
+        "Diabetes": true,
+        "Kolesterol": true
+    },
+    {
+        "QuestionNo": 2,
+        "Answer": "12/12/1993",
+        "Stroke": true,
+        "Diabetes": false,
+        "Kolesterol": true
+    },
+    {
+        "QuestionNo": 3,
+        "Answer": 160,
+        "Stroke": true,
+        "Diabetes": true,
+        "Kolesterol": true
+    },
+    {
+        "QuestionNo": 4,
+        "Answer": 58,
+        "Stroke": true,
+        "Diabetes": false,
+        "Kolesterol": true
+    },
+    {
+        "QuestionNo": 5,
+        "Answer": 1,
+        "Stroke": true,
+        "Diabetes": true,
+        "Kolesterol": true
+    },
+    {
+        "QuestionNo": 6,
+        "Answer": 3,
+        "Stroke": true,
+        "Diabetes": false,
+        "Kolesterol": true
+    },
+    {
+        "QuestionNo": 7,
+        "Answer": 90,
+        "Stroke": true,
+        "Diabetes": true,
+        "Kolesterol": true
+    },
+    {
+        "QuestionNo": 8,
+        "Answer": false,
+        "Stroke": true,
+        "Diabetes": false,
+        "Kolesterol": true
+    },
+    {
+        "QuestionNo": 9,
+        "Answer": 3,
+        "Stroke": true,
+        "Diabetes": true,
+        "Kolesterol": true
+    },
+    {
+        "QuestionNo": 10,
+        "Answer": 2,
+        "Stroke": true,
+        "Diabetes": false,
+        "Kolesterol": true
+    },
+    {
+        "QuestionNo": 11,
+        "Answer": 1,
+        "Stroke": true,
+        "Diabetes": true,
+        "Kolesterol": true
+    },
+    {
+        "QuestionNo": 12,
+        "Answer": 3,
+        "Stroke": true,
+        "Diabetes": false,
+        "Kolesterol": true
+    },
+    {
+        "QuestionNo": 13,
+        "Answer": 2,
+        "Stroke": true,
+        "Diabetes": true,
+        "Kolesterol": true
+    },
+    {
+        "QuestionNo": 14,
+        "Answer": 3,
+        "Stroke": true,
+        "Diabetes": false,
+        "Kolesterol": true
+    },
+    {
+        "QuestionNo": 15,
+        "Answer": 1,
+        "Stroke": true,
+        "Diabetes": true,
+        "Kolesterol": true
+    },
+    {
+        "QuestionNo": 16,
+        "Answer": true,
+        "Stroke": true,
+        "Diabetes": false,
+        "Kolesterol": true
+    },
+    {
+        "QuestionNo": 17,
+        "Answer": 1,
+        "Stroke": true,
+        "Diabetes": true,
+        "Kolesterol": true
+    }
+]
