@@ -2,28 +2,28 @@
     {
         "QuestionNo": 1,
         "Answer": false,
-        "Stroke": true,
+        "Stroke": false,
         "Diabetes": true,
         "Kolesterol": true
     },
     {
         "QuestionNo": 2,
         "Answer": "12/12/1993",
-        "Stroke": true,
+        "Stroke": false,
         "Diabetes": false,
         "Kolesterol": true
     },
     {
         "QuestionNo": 3,
         "Answer": 160,
-        "Stroke": true,
+        "Stroke": false,
         "Diabetes": true,
         "Kolesterol": true
     },
     {
         "QuestionNo": 4,
         "Answer": 58,
-        "Stroke": true,
+        "Stroke": false,
         "Diabetes": false,
         "Kolesterol": true
     },
@@ -44,14 +44,14 @@
     {
         "QuestionNo": 7,
         "Answer": 90,
-        "Stroke": true,
+        "Stroke": false,
         "Diabetes": true,
         "Kolesterol": true
     },
     {
         "QuestionNo": 8,
         "Answer": false,
-        "Stroke": true,
+        "Stroke": false,
         "Diabetes": false,
         "Kolesterol": true
     },
@@ -65,14 +65,14 @@
     {
         "QuestionNo": 10,
         "Answer": 2,
-        "Stroke": true,
+        "Stroke": false,
         "Diabetes": false,
         "Kolesterol": true
     },
     {
         "QuestionNo": 11,
         "Answer": 1,
-        "Stroke": true,
+        "Stroke": false,
         "Diabetes": true,
         "Kolesterol": true
     },
@@ -100,21 +100,21 @@
     {
         "QuestionNo": 15,
         "Answer": 1,
-        "Stroke": true,
+        "Stroke": false,
         "Diabetes": true,
         "Kolesterol": true
     },
     {
         "QuestionNo": 16,
         "Answer": true,
-        "Stroke": true,
+        "Stroke": false,
         "Diabetes": false,
         "Kolesterol": true
     },
     {
         "QuestionNo": 17,
         "Answer": 1,
-        "Stroke": true,
+        "Stroke": false,
         "Diabetes": true,
         "Kolesterol": true
     }
