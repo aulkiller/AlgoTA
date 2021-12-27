@@ -1,5 +1,6 @@
 <?php
 require_once('stroke.php');
+require_once('bmi.php');
 
 $answers = file_get_contents('contoh.json');
 
@@ -29,5 +30,16 @@ foreach($decoded_jsonf as $answers)
         array_push($stroke, $answers);
     }
 }
-var_dump(GetStrokeResult($stroke,$stroke));
+$bmi_res = GetBMIResult($bmi);
+$stroke_res = GetStrokeResult($bmi_res,$stroke,1);
+echo "Pasien Sampel 1<br>";
+if($stroke_res == 1){
+    print("Stroke Resiko Rendah");
+}
+else if($stroke_res == 2){
+    print("Waspada Struk");
+}
+else if($stroke_res == 3){
+    print("Stroke Resiko Tinggi");
+}
 ?>
