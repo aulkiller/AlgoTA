@@ -1,32 +1,32 @@
 <?php
     function GetDiabeteseResult($response)
     {
-        $year = date('d/m/Y');
+        $year = date('Y');
         $score = 0;
         $diabetes_risk = '';
 
         $gender = $response->{"Jenis Kelamin"};
 
         $birth_day = explode("/", $response->{"Tanggal Lahir"});
-        $birth_year = '19'.$birth_day[2];
+        $birth_year = $birth_day[2];
         $age = intval($year) - intval($birth_year);
-        
+
         if($age > 64){
             $score += 4;
         }
-        elseif($age <= 64 && $age >= 55){
+        elseif($age >= 55){
             $score += 3;
         }
-        elseif($age <= 55 && $age >= 45){
+        elseif($age >= 45){
             $score += 2;
         }
 
         $bmi = intval($response->{"Masukkan berat badan (kg)"}) / pow(intval($response->{"Masukkan tinggi badan (cm)"})/100,2);
-        if($bmi > 25 && $bmi < 30 ){
-            $score += 1;
-        }
-        elseif($bmi > 30){
+        if($bmi > 30){
             $score += 3;
+        }
+        elseif($bmi >=25 ){
+            $score += 1;
         }
 
         if($response->{"Apakah anda aktif melakukan aktivitas fisik?"} !== "Ya"){
@@ -37,7 +37,7 @@
             if(intval($response->{"Ukuran lingkar pinggang (cm)"}) > 102){
                 $score += 4;
             }
-            elseif(intval($response->{"Ukuran lingkar pinggang (cm)"}) <= 102 && intval($response->{"Ukuran lingkar pinggang (cm)"}) >= 94){
+            elseif(intval($response->{"Ukuran lingkar pinggang (cm)"}) >= 94){
                 $score += 3;
             }
         }
@@ -45,7 +45,7 @@
             if(intval($response->{"Ukuran lingkar pinggang (cm)"}) > 88){
                 $score += 4;
             }
-            elseif(intval($response->{"Ukuran lingkar pinggang (cm)"}) <= 88 && intval($response->{"Ukuran lingkar pinggang (cm)"}) >= 80){
+            elseif(intval($response->{"Ukuran lingkar pinggang (cm)"}) >= 80){
                 $score += 3;
             }
         }
@@ -72,13 +72,13 @@
         if($score > 20){
             $diabetes_risk = "Sangat Tinggi";
         }
-        elseif($score >= 15 && $score <= 20){
+        elseif($score >= 15){
             $diabetes_risk = "Tinggi";
         }
-        elseif($score >= 12 && $score <= 14){
+        elseif($score >= 12){
             $diabetes_risk = "Sedang";
         }
-        elseif($score >= 7 && $score <= 11){
+        elseif($score >= 7){
             $diabetes_risk = "Rendah";
         }
         else{
