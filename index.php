@@ -1,38 +1,28 @@
 <?php
+
+// Function Requirement
 require_once('stroke.php');
-require_once('bmi.php');
+require_once('diabetes.php');
 
-$answers = file_get_contents('contoh.json');
-
-$decoded_jsont = json_decode($answers, true);
+// Input
+$answers = file_get_contents('contoh_input.json');
 $decoded_jsonf = json_decode($answers, false);
 
-// var_dump($decoded_jsonf);
-$diabetes = array();
-$kolesterol = array();
-$stroke = array();
-$bmi = array();
-foreach($decoded_jsonf as $answers)
-{
-    if($answers->QuestionNo < 5){
-        array_push($bmi,$answers);
-    }
-    if($answers->Diabetes == true)
-    {
-        array_push($diabetes,$answers);
-    }
-    if($answers->Kolesterol)
-    {
-        array_push($kolesterol, $answers);
-    }
-    if($answers->Stroke)
-    {
-        array_push($stroke, $answers);
-    }
-}
-$bmi_res = GetBMIResult($bmi);
-$stroke_res = GetStrokeResult($bmi_res,$stroke,1);
-echo "Pasien Sampel 1<br>";
+// Variable Handling
+// foreach($decoded_jsonf as $key=>$value)
+// {
+//     echo "$key $value <br>";
+// }
+// print($decoded_jsonf->{"Tanggal Lahir"});
+$stroke_res = GetStrokeResult($decoded_jsonf);
+$diabetes_res = GetDiabeteseResult($decoded_jsonf);
+// Dummy
+$kolesterol_res = 0.55;
+// $diabetes_res = GetDiabetResult($decoded_jsonf);
+// $kolesterol_res = GetKolesResult($decoded_jsonf);
+
+// Debug Result
+echo "Tes Output Stroke <br>";
 if($stroke_res == 1){
     print("Stroke Resiko Rendah");
 }
@@ -42,4 +32,31 @@ else if($stroke_res == 2){
 else if($stroke_res == 3){
     print("Stroke Resiko Tinggi");
 }
+echo "<br> Tes Output DM <br>";
+if($diabetes_res > 20){
+    print("DM Sangat Tinggi");
+}
+elseif($diabetes_res >= 15 && $diabetes_res <= 20){
+    print("DM Tinggi");
+}
+elseif($diabetes_res >= 12 && $diabetes_res <= 14){
+    print("DM Sedang");
+}
+elseif($diabetes_res >= 7 && $diabetes_res <= 11){
+    print("DM Rendah");
+}
+else{
+    print("DM Sangat Rendah");
+}
+echo "<br>";
+
+// Output
+$data = array(
+    "StrokeResult" => $stroke_res,
+    "DiabetesResult" => $diabetes_res,
+    "KolesterolResult" => $kolesterol_res
+    );
+    
+echo json_encode($data);
+
 ?>

@@ -11,12 +11,13 @@
     // echo "<td> Berat Badan </td>";
     echo "<td> BMI </td>";
     echo "<td> Skor Diabetes </td>";
-    // echo "<td> Aktivitas Fisik </td>";
-    // echo "<td> Merokok </td>";
-    // echo "<td> Tekanan Darah </td>";
-    // echo "<td> Kadar Kolesterol </td>";
-    // echo "<td> Riwayat Stroke </td>";
-    // echo "<td> Irama Jantung </td>";
+    echo "<td> Aktivitas Fisik </td>";
+    echo "<td> Merokok </td>";
+    echo "<td> Tekanan Darah </td>";
+    echo "<td> Kadar Kolesterol </td>";
+    echo "<td> Riwayat Stroke </td>";
+    echo "<td> Gangguan Irama Jantung </td>";
+    echo "<td> Kadar Gula </td>";
     echo "<td> Strokecard Rendah </td>";
     echo "<td> Strokecard Menengah </td>";
     echo "<td> Strokecard Tinggi </td>";
@@ -26,9 +27,9 @@
     echo "</tr>";
     // var_dump($array);
     $year = date('d/m/Y');
+    $i=0;
     foreach($array as $response){
 
-        $i=0;
         $i++;
         $score = 0;
         $high = 0;
@@ -101,23 +102,23 @@
 
         if($score > 20){
             $diabetes_risk = "Sangat Tinggi";
-            $high++;
+            // $high++;
         }
         elseif($score >= 15 && $score <= 20){
             $diabetes_risk = "Tinggi";
-            $high++;
+            // $high++;
         }
         elseif($score >= 12 && $score <= 14){
             $diabetes_risk = "Sedang";
-            $medium++;
+            // $medium++;
         }
         elseif($score >= 7 && $score <= 11){
             $diabetes_risk = "Rendah";
-            $low++;
+            // $low++;
         }
         else{
             $diabetes_risk = "Sangat Rendah";
-            $low++;
+            // $low++;
         }
 
         // START bmi stroke - stroke
@@ -179,19 +180,52 @@
             $high++;
         }
 
+        if($response->{"Masukkan kadar gula anda saat ini:"} == "< 120"){
+            $low++;
+        } else if($response->{"Masukkan kadar gula anda saat ini:"} == "120 - 150") {
+            $medium++;
+        } else {
+            $high++;
+        }
+
+        // if($response->{"Apakah anda pernah mengalami peningkatan kadar gula darah (saat hamil, sakit, pemeriksaan gula darah) ?"} == "Tidak"){
+        //     $low++;
+        // } else {
+        //     $high++;
+        // }
+
         if ($high > 2) {
             $stroke_risk = "Stroke Resiko Tinggi";
         }
-        // else if ($medium+($high*2) > 6 && $medium+($high*2) < 14) {
+        // else if ($high == 2 && $medium > 3) {
         //     $stroke_risk = "Stroke Resiko Tinggi";
+        // }
+        // else if ($high == 1 && $medium > 5) {
+        //     $stroke_risk = "Stroke Resiko TInggi";
+        // }
+        // else if ($high == 2 && $medium < 3) {
+        //     $stroke_risk = "Waspada Struk";
         // }
         else if ($medium > 3 && $medium < 7) {
             $stroke_risk = "Waspada Struk";
         }
+        // else if ($medium == 2 && $low > 5) {
+        //     $stroke_risk = "Waspada Struk";
+        // }
         else if ($low > 5 && $low < 9){
             $stroke_risk = "Stroke Resiko Rendah";
         }
         else {
+            // $total = $high * 3 + $medium * 2 + $low;
+            // if ($total > 23){
+            //     $stroke_risk = "<br>Hasil Ambigu<br><br>";
+            // }
+            // else if ($total > 15){
+            //     $stroke_risk = "Waspada Struk";
+            // }
+            // else {
+            //     $stroke_risk = "Stroke Resiko Rendah";
+            // }
             $stroke_risk = "<br>Hasil Ambigu<br><br>";
         }
 
@@ -207,12 +241,13 @@
         // echo "<td>".$response->{"Masukkan berat badan (kg)"}."</td>";
         echo "<td>".$bmi."</td>";
         echo "<td>".$score."</td>";
-        // echo "<td>".$response->{"Apakah anda aktif melakukan aktivitas fisik?"}."</td>";
-        // echo "<td>".$response->{"Apakah anda merokok?"}."</td>";
-        // echo "<td>".$response->{"Masukkan tekanan darah anda saat ini:"}."</td>";
-        // echo "<td>".$response->{"Berapa kadar kolesterol anda saat ini? (mmol/L)"}."</td>";
-        // echo "<td>".$response->{"Apakah keluarga memiliki riwayat stroke?"}."</td>";
-        // echo "<td>".$response->{"Apakah anda menderita gangguan irama jantung?"}."</td>";
+        echo "<td>".$response->{"Apakah anda aktif melakukan aktivitas fisik?"}."</td>";
+        echo "<td>".$response->{"Apakah anda merokok?"}."</td>";
+        echo "<td>".$response->{"Masukkan tekanan darah anda saat ini:"}."</td>";
+        echo "<td>".$response->{"Berapa kadar kolesterol anda saat ini? (mmol/L)"}."</td>";
+        echo "<td>".$response->{"Apakah keluarga memiliki riwayat stroke?"}."</td>";
+        echo "<td>".$response->{"Apakah anda menderita gangguan irama jantung?"}."</td>";
+        echo "<td>".$response->{"Masukkan kadar gula anda saat ini:"}."</td>";
         echo "<td>".$low."</td>";
         echo "<td>".$medium."</td>";
         echo "<td>".$high."</td>";
