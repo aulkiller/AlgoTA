@@ -5,34 +5,17 @@ require_once('stroke.php');
 require_once('diabetes.php');
 
 // Input
-$answers = file_get_contents('contoh_input.json');
+$answers = file_get_contents('contoh_input_lama.json');
 $decoded_jsonf = json_decode($answers, false);
 
-// Variable Convertion
-if (count($decoded_jsonf->data) != 18) {
-    echo "Wrong Data Count <br>";
-    return 0;
-}
-
-$decoded_json = array();
-
-foreach($decoded_jsonf->data as $indicator)
-{
-    $decoded_json[$indicator->question] = $indicator->answer;
-}
-
-$decoded_jsonobj = (object) $decoded_json;
-
 // Variable Handling
-// foreach($decoded_jsonobj as $key=>$value)
+// foreach($decoded_jsonf as $key=>$value)
 // {
 //     echo "$key $value <br>";
 // }
-// print($decoded_jsonobj->{"Tanggal Lahir"});
-
-
-$stroke_res = GetStrokeResult($decoded_jsonobj);
-$diabetes_res = GetDiabeteseResult($decoded_jsonobj);
+// print($decoded_jsonf->{"Tanggal Lahir"});
+$stroke_res = GetStrokeResult($decoded_jsonf);
+$diabetes_res = GetDiabeteseResult($decoded_jsonf);
 // Dummy
 // Call Python Koles here
 $kolesterol_res = 0.55;

@@ -1,0 +1,20 @@
+{
+    "ID": 1,
+    "Jenis Kelamin": "Laki-laki",
+    "Tanggal Lahir": "08\/27\/1962",
+    "Masukkan tinggi badan (cm)": 168,
+    "Masukkan berat badan (kg)": 75,
+    "Apakah anda aktif melakukan aktivitas fisik?": "Tidak",
+    "Apakah anda merokok?": "Tidak Merokok",
+    "Ukuran lingkar pinggang (cm)": 92,
+    "Apakah anda pernah mengalami tekanan darah tinggi?": "Tidak",
+    "Masukkan tekanan darah anda saat ini:": "< 120\/80",
+    "Apakah anda pernah mengalami peningkatan kadar gula darah (saat hamil, sakit, pemeriksaan gula darah) ?": "Ya",
+    "Masukkan kadar gula anda saat ini:": "> 150",
+    "Berapa kadar kolesterol anda saat ini? (mmol\/L)": "200 - 239",
+    "Apakah keluarga memiliki riwayat stroke?": "Ya",
+    "Apakah anda menderita gangguan irama jantung?": "Tidak diketahui",
+    "Seberapa sering anda makan sayuran, buah-buahan atau beri?": "Setiap Hari",
+    "Apakah mengonsumsi obat anti hipertensi secara reguler?": "Tidak",
+    "Apakah memiliki anggota keluarga atau saudara yang terdiagnosa diabetes? (Diabetes 1 atau Diabetes 2)": "Tidak"
+}
