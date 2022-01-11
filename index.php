@@ -3,6 +3,7 @@
 // Function Requirement
 require_once('stroke.php');
 require_once('diabetes.php');
+require_once('cholesterol.php');
 
 // Input
 $answers = file_get_contents('contoh_input.json');
@@ -33,9 +34,7 @@ $decoded_jsonobj = (object) $decoded_json;
 
 $stroke_res = GetStrokeResult($decoded_jsonobj);
 $diabetes_res = GetDiabeteseResult($decoded_jsonobj);
-// Dummy
-// Call Python Koles here
-$kolesterol_res = 0.55;
+$kolesterol_res = GetCholesterolResult($decoded_jsonobj);
 
 // Debug Result
 echo "Tes Output Stroke <br>";
@@ -65,6 +64,21 @@ elseif($diabetes_res >= 7){
 else{
     print("DM Sangat Rendah");
 }
+
+echo "<br> Tes Output Kolesterol <br>";
+if ($kolesterol_res < 5){
+    print("Tidak Berisiko");
+}
+else if ($kolesterol_res >= 5 and $kolesterol_res < 7.4){
+    print("Risiko Rendah");
+}
+else if ($kolesterol_res >= 7.5 and $kolesterol_res < 19.9){
+    print("Risiko Menengah");
+}
+else if ($kolesterol_res >= 20){
+    print("Risiko Tinggi");
+}
+
 echo "<br>";
 
 // Input ke DB
