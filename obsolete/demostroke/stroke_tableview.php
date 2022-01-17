@@ -1,6 +1,6 @@
 <table align="center" border='1' width="100%">
 <?php
-    $strJsonFileContents = file_get_contents("screening_2.json");
+    $strJsonFileContents = file_get_contents("tes.json");
     $array = json_decode($strJsonFileContents);
     echo "<tr>";
     echo "<td> No. </td>";
@@ -10,7 +10,7 @@
     // echo "<td> Tinggi Badan </td>";
     // echo "<td> Berat Badan </td>";
     echo "<td> BMI </td>";
-    echo "<td> Skor Diabetes </td>";
+    // echo "<td> Skor Diabetes </td>";
     echo "<td> Aktivitas Fisik </td>";
     echo "<td> Merokok </td>";
     echo "<td> Tekanan Darah </td>";
@@ -18,15 +18,14 @@
     echo "<td> Riwayat Stroke </td>";
     echo "<td> Gangguan Irama Jantung </td>";
     echo "<td> Kadar Gula </td>";
-    echo "<td> Strokecard Rendah </td>";
-    echo "<td> Strokecard Menengah </td>";
     echo "<td> Strokecard Tinggi </td>";
+    echo "<td> Strokecard Menengah </td>";
+    echo "<td> Strokecard Rendah </td>";
     echo "<td> Realita </td>";
-    echo "<td> Resiko Diabetes</td>";
     echo "<td> Resiko Stroke</td>";
     echo "</tr>";
     // var_dump($array);
-    $year = date('d/m/Y');
+    $year = date('m/d/Y');
     $i=0;
     foreach($array as $response){
 
@@ -35,7 +34,7 @@
         $high = 0;
         $medium = 0;
         $low = 0;
-        $diabetes_risk = '';
+        $stroke_risk = '??';
 
         $gender = $response->{"Jenis Kelamin"};
 
@@ -93,12 +92,12 @@
             $score += 2;
         }
 
-        if($response->{"Apakah memiliki anggota keluarga atau saudara yang terdiagnosa diabetes? (Diabetes 1 atau Diabetes 2)"} == "Ya (Orang tua, Kakak, Adik, Anak kandung)"){
-            $score += 5;
-        }
-        elseif($response->{"Apakah memiliki anggota keluarga atau saudara yang terdiagnosa diabetes? (Diabetes 1 atau Diabetes 2)"} == "Ya (Kakek/Nenek, Bibi, Paman, atau sepupu dekat)"){
-            $score += 3;
-        }
+        // if($response->{"Apakah memiliki anggota keluarga atau saudara yang terdiagnosa diabetes? (Diabetes 1 atau Diabetes 2)"} == "Ya (Orang tua, Kakak, Adik, Anak kandung)"){
+        //     $score += 5;
+        // }
+        // elseif($response->{"Apakah memiliki anggota keluarga atau saudara yang terdiagnosa diabetes? (Diabetes 1 atau Diabetes 2)"} == "Ya (Kakek/Nenek, Bibi, Paman, atau sepupu dekat)"){
+        //     $score += 3;
+        // }
 
         if($score > 20){
             $diabetes_risk = "Sangat Tinggi";
@@ -194,40 +193,51 @@
         //     $high++;
         // }
 
-        if ($high > 2) {
+        if ($high >= 3) {
             $stroke_risk = "Stroke Resiko Tinggi";
+        } else {
+            if ($high == 2){
+                if ($medium >= 3) {
+                    $stroke_risk = "Stroke Resiko Tinggi";
+                } else if ($medium >= 2) {
+                    $stroke_risk = "Waspada Struk";
+                } else {
+                    $stroke_risk = "Stroke Resiko Rendah";
+                }
+            }
+            else if ($high == 1){
+                if ($medium >= 5) {
+                    $stroke_risk = "Stroke Resiko Tinggi";
+                } else if ($medium >= 3) {
+                    $stroke_risk = "Waspada Struk";
+                } else {
+                    $stroke_risk = "Stroke Resiko Rendah";
+                }
+            }
+            else if ($medium >= 4) {
+                $stroke_risk = "Waspada Struk";
+            } else {
+                if ($medium == 3){
+                    if ($low >= 3) {
+                        $stroke_risk = "Waspada Struk";
+                    } else {
+                        $stroke_risk = "Stroke Resiko Rendah";
+                    }
+                }
+                else if ($medium == 2){
+                    if ($low >= 5) {
+                        $stroke_risk = "Waspada Struk";
+                    } else {
+                        $stroke_risk = "Stroke Resiko Rendah";
+                    }
+                }
+                else if ($low >= 6){
+                    $stroke_risk = "Stroke Resiko Rendah";
+                }
+            }
         }
-        // else if ($high == 2 && $medium > 3) {
-        //     $stroke_risk = "Stroke Resiko Tinggi";
-        // }
-        // else if ($high == 1 && $medium > 5) {
-        //     $stroke_risk = "Stroke Resiko TInggi";
-        // }
-        // else if ($high == 2 && $medium < 3) {
-        //     $stroke_risk = "Waspada Struk";
-        // }
-        else if ($medium > 3 && $medium < 7) {
-            $stroke_risk = "Waspada Struk";
-        }
-        // else if ($medium == 2 && $low > 5) {
-        //     $stroke_risk = "Waspada Struk";
-        // }
-        else if ($low > 5 && $low < 9){
-            $stroke_risk = "Stroke Resiko Rendah";
-        }
-        else {
-            // $total = $high * 3 + $medium * 2 + $low;
-            // if ($total > 23){
-            //     $stroke_risk = "<br>Hasil Ambigu<br><br>";
-            // }
-            // else if ($total > 15){
-            //     $stroke_risk = "Waspada Struk";
-            // }
-            // else {
-            //     $stroke_risk = "Stroke Resiko Rendah";
-            // }
-            $stroke_risk = "<br>Hasil Ambigu<br><br>";
-        }
+
+
 
 
         // END bmi stroke - stroke
@@ -240,7 +250,7 @@
         // echo "<td>".$response->{"Masukkan tinggi badan (cm)"}."</td>";
         // echo "<td>".$response->{"Masukkan berat badan (kg)"}."</td>";
         echo "<td>".$bmi."</td>";
-        echo "<td>".$score."</td>";
+        // echo "<td>".$score."</td>";
         echo "<td>".$response->{"Apakah anda aktif melakukan aktivitas fisik?"}."</td>";
         echo "<td>".$response->{"Apakah anda merokok?"}."</td>";
         echo "<td>".$response->{"Masukkan tekanan darah anda saat ini:"}."</td>";
@@ -248,11 +258,10 @@
         echo "<td>".$response->{"Apakah keluarga memiliki riwayat stroke?"}."</td>";
         echo "<td>".$response->{"Apakah anda menderita gangguan irama jantung?"}."</td>";
         echo "<td>".$response->{"Masukkan kadar gula anda saat ini:"}."</td>";
-        echo "<td>".$low."</td>";
-        echo "<td>".$medium."</td>";
         echo "<td>".$high."</td>";
+        echo "<td>".$medium."</td>";
+        echo "<td>".$low."</td>";
         echo "<td>".$response->{"Hasil yang diharapkan"}."</td>";
-        echo "<td>".$diabetes_risk."</td>";
         echo "<td>".$stroke_risk."</td>";
         echo "</tr>";
     }
