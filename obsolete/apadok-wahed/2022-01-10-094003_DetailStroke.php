@@ -85,7 +85,7 @@ class DetailStroke extends Migration
                 'type' => 'INT',
                 'constraint' => '1',
                 'null' => true,
-                'comment' => '1 = < 120, 2 = 120 - 150, 3 = > 150'
+                'comment' => '1 = < 120, 2 = 120 - 150, 3 = > 150,  4 = Tidak diketahui'
             ],
             'high_score' => [
                 'type' => 'INT',
