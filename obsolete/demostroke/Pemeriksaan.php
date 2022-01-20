@@ -47,7 +47,7 @@ class Pemeriksaan extends ResourceController
         {
             $decoded_json[$indicator->question] = $indicator->answer;
         }
-        
+
         $data = (object) $decoded_json;
         // Update Ends Here
 
@@ -70,10 +70,10 @@ class Pemeriksaan extends ResourceController
 
         $data->low_score = $stroke['low'];
         $data->medium_score = $stroke['medium'];
-        $data->high_score =$stroke['high'];  
+        $data->high_score =$stroke['high'];
 
-        $data->score_diabetes = $diabetes['score']; 
-        $data->bmi = intval($data->berat_badan) / pow(intval($data->tinggi_badan)/100,2); 
+        $data->score_diabetes = $diabetes['score'];
+        $data->bmi = intval($data->berat_badan) / pow(intval($data->tinggi_badan)/100,2);
 
         $this->DiabetesModel->save($data);
         $this->StrokeModel->save($data);
@@ -87,7 +87,7 @@ class Pemeriksaan extends ResourceController
         $score = 0;
         $diabetes_risk = "";
 
-        $gender = $data->jenis_kelamin; 
+        $gender = $data->jenis_kelamin;
 
         $birth_day = explode("/", $data->tanggal_lahir);
         $birth_year = $birth_day[2];
@@ -132,22 +132,22 @@ class Pemeriksaan extends ResourceController
             }
         }
 
-        if($data->gula_darah){
+        if($data->gula_darah == 1){
             $score += 5;
         }
 
-        if(!$data->buah_sayur){
+        if($data->buah_sayur == 2){
             $score += 1;
         }
 
-        if($data->obat_hipertensi){
+        if($data->obat_hipertensi == 2){
             $score += 2;
         }
 
-        if($data->keturunan == 2){
+        if($data->keturunan == 3){
             $score += 5;
         }
-        elseif($data->keturunan == 1){
+        elseif($data->keturunan == 2){
             $score += 3;
         }
 
@@ -180,7 +180,7 @@ class Pemeriksaan extends ResourceController
         $medium = 0;
         $low = 0;
         $year = date('d/m/Y');
-        
+
         $bmi = intval($data->berat_badan) / pow(intval($data->tinggi_badan)/100,2);
         if ($bmi <= 25){
             $low++;
@@ -297,7 +297,7 @@ class Pemeriksaan extends ResourceController
         return array(
             'high' => $high,
             'medium' => $medium,
-            'low' => $low, 
+            'low' => $low,
             'hasil' => $hasil
         );
     }
