@@ -73,10 +73,10 @@ class Pemeriksaan extends ResourceController
 
         $data->low_score = $stroke['low'];
         $data->medium_score = $stroke['medium'];
-        $data->high_score =$stroke['high'];  
+        $data->high_score =$stroke['high'];
 
-        $data->score_diabetes = $diabetes['score']; 
-        $data->bmi = intval($data->berat_badan) / pow(intval($data->tinggi_badan)/100,2); 
+        $data->score_diabetes = $diabetes['score'];
+        $data->bmi = intval($data->berat_badan) / pow(intval($data->tinggi_badan)/100,2);
 
         $this->DiabetesModel->save($data);
         $this->StrokeModel->save($data);
@@ -92,7 +92,7 @@ class Pemeriksaan extends ResourceController
         $score = 0;
         $diabetes_risk = "";
 
-        $gender = $data->jenis_kelamin; 
+        $gender = $data->jenis_kelamin;
 
         $birth_day = explode("/", $data->tanggal_lahir);
         $birth_year = $birth_day[2];
@@ -116,7 +116,7 @@ class Pemeriksaan extends ResourceController
             $score += 1;
         }
 
-        if($data->aktivitas_fisik == 2){
+        if($data->aktivitas_fisik !== 1){
             $score += 2;
         }
 
@@ -184,7 +184,7 @@ class Pemeriksaan extends ResourceController
         $high = 0;
         $medium = 0;
         $low = 0;
-        
+
         $bmi = intval($data->berat_badan) / pow(intval($data->tinggi_badan)/100,2);
         if ($bmi <= 25){
             $low++;
@@ -301,7 +301,7 @@ class Pemeriksaan extends ResourceController
         return array(
             'high' => $high,
             'medium' => $medium,
-            'low' => $low, 
+            'low' => $low,
             'hasil' => $hasil
         );
     }
@@ -363,7 +363,7 @@ class Pemeriksaan extends ResourceController
 
         if ($age < 40 || $age > 79){
             return array(
-                'score' => -1, 
+                'score' => -1,
                 'hasil' => "Tidak diketahui"
             );
         }
@@ -486,7 +486,7 @@ class Pemeriksaan extends ResourceController
         }
 
         return array(
-            'score' => $kolesterol_res, 
+            'score' => $kolesterol_res,
             'hasil' => $hasil
         );
     }

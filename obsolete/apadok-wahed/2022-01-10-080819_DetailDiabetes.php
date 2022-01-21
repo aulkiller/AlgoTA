@@ -33,7 +33,7 @@ class DetailDiabetes extends Migration
                 'type' => 'INT',
                 'constraint' => '1',
                 'null' => true,
-                'comment' => '2 = Ya, 1 = jarang, 0 = Tidak'
+                'comment' => '1 = Ya, 2 = Tidak, 3 = Jarang'
             ],
             // 'gender' => [
             //     'type' => 'VARCHAR',
@@ -49,25 +49,25 @@ class DetailDiabetes extends Migration
                 'type' => 'INT',
                 'constraint' => '1',
                 'null' => true,
-                'comment' => '1 = Ya, 0 = Tidak'
+                'comment' => '1 = Ya, 2 = Tidak'
             ],
             'buah_sayur' => [
                 'type' => 'INT',
                 'constraint' => '1',
                 'null' => true,
-                'comment' => '1 = Ya, 0 = Tidak'
+                'comment' => '1 = Setiap Hari, 2 = Tidak Setiap Hari'
             ],
             'obat_hipertensi' => [
                 'type' => 'INT',
                 'constraint' => '1',
                 'null' => true,
-                'comment' => '1 = Ya, 0 = Tidak'
+                'comment' => '1 = Tidak, 2 = Ya'
             ],
             'keturunan' => [
                 'type' => 'INT',
                 'constraint' => '1',
                 'null' => true,
-                'comment' => '2 = Orang tua, Kakak, Adik, Anak kandung | 1 = Kakek/Nenek, Bibi, Paman, atau sepupu dekat | 0 = tidak'
+                'comment' => '1 = Tidak, 2 = Kakek/Nenek, Bibi, Paman, atau sepupu dekat, 3  = Orang tua, Kakak, Adik, Anak kandung'
             ],
             'score_diabetes' => [
                 'type' => 'INT',
