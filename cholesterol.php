@@ -51,6 +51,7 @@
         //     $hdl = 60;
         // }
 
+        // Asumsi hdl pasien sehat dan ras diabaikan
         $hdl = 40;
         $isBlack = False;
 

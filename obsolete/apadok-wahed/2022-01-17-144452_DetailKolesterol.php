@@ -24,31 +24,31 @@ class DetailKolesterol extends Migration
                 'type' => 'INT',
                 'constraint' => '1',
                 'null' => true,
-                'comment' => '2 = Merokok, 1 = Sedang berusaha berhenti merokok, 0 = Tidak Merokok'
+                'comment' => '1 = Perokok Aktif, 2 = Sedang berusaha berhenti merokok, 3 = Tidak Merokok'
             ],
             'obat_hipertensi' => [
                 'type' => 'INT',
                 'constraint' => '1',
                 'null' => true,
-                'comment' => '1 = Ya, 0 = Tidak'
+                'comment' => '1 = Tidak, 2 = Ya'
             ],
             'kadar_gula' => [
                 'type' => 'INT',
                 'constraint' => '1',
                 'null' => true,
-                'comment' => '0 = < 120, 1 = 120 - 150, 2 = sisanya'
+                'comment' => '1 = < 120, 2 = 120 - 150, 3 = > 150,  4 = Tidak diketahui'
             ],
             'tekanan_darah' => [
                 'type' => 'INT',
                 'constraint' => '1',
                 'null' => true,
-                'comment' => '0 = < 120/80, 1 = 120 - 139 / 80 - 89, 2 = sisanya'
+                'comment' => '1 = > 140/90, 2 = 120 - 139 / 80 - 89, 3 = < 120/80, 4 = Tidak diketahui'
             ],
             'kadar_kolesterol' => [
                 'type' => 'INT',
                 'constraint' => '1',
                 'null' => true,
-                'comment' => '0 = <200, 1 = 200-239, 2 = sisanya'
+                'comment' => '1 > 240, 2 = 200-239, 3 = < 200, 4 = Tidak diketahui'
             ],
             'score_kolesterol' => [
                 'type' => 'INT',
