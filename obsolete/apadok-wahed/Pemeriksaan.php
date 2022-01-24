@@ -322,11 +322,11 @@ class Pemeriksaan extends ResourceController
             $isMale = True;
         }
 
-        if($data->merokok == 0){
+        if($data->merokok == 3){
             $smoker = False;
         }
 
-        if ($data->obat_hipertensi == 1){
+        if ($data->obat_hipertensi == 2){
             $hypertensive = True;
         }
 
@@ -334,17 +334,17 @@ class Pemeriksaan extends ResourceController
            $diabetic = True;
         }
 
-        if($data->tekanan_darah == 0){
+        if($data->tekanan_darah == 3){
             $sbp = 110;
-        }else if($data->tekanan_darah == 1){
+        }else if($data->tekanan_darah == 2){
             $sbp = 130;
         }else{
             $sbp = 150;
         }
 
-        if($data->kadar_kolesterol == 0){
+        if($data->kadar_kolesterol == 3){
             $chol = 190;
-        }else if($data->kadar_kolesterol == 1){
+        }else if($data->kadar_kolesterol == 2){
             $chol = 220;
         }else{
             $chol = 250;
