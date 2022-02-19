@@ -24,18 +24,8 @@ class Pemeriksaan extends ResourceController
         return $this->respond($this->model->findAll());
     }
 
-    public function show($slug = null, $id = null)
+    public function show($id = null)
     {
-        if($slug == 'user'){
-            $data = $this->model->get_user_by_id_latest($id);
-            return $this->respond($data);
-        }
-
-        if($slug == 'userAll'){
-            $data = $this->model->get_user_by_id_all($id);
-            return $this->respond($data);
-        }
-
         $record = $this->model->find($id);
         if (!$record) {
             # code...
@@ -51,9 +41,6 @@ class Pemeriksaan extends ResourceController
     public function create()
     {
         $data = $this->request->getJSON();
-		
-		/*Contoh Input API dari Android	[{"answer":"Laki-laki","question":"jenis_kelamin"},{"answer":"11/1/2022","question":"tanggal_lahir"},{"answer":"3432","question":"tinggi_badan"},{"answer":"34324","question":"berat_badan"},{"answer":"2","question":"aktivitas_fisik"},{"answer":"2","question":"merokok"},{"answer":"324234","question":"lingkar_pinggang"},{"answer":"1","question":"histori_hipertensi"},{"answer":"2","question":"tekanan_darah"},{"answer":"1","question":"gula_darah"},{"answer":"3","question":"kadar_gula"},{"answer":"3","question":"kadar_kolesterol"},{"answer":"3","question":"riwayat_stroke"},{"answer":"3","question":"irama_jantung"},{"answer":"2","question":"buah_sayur"},{"answer":"2","question":"obat_hipertensi"},{"answer":"2","question":"keturunan"},{"answer":"4","question":"kolesterol_hdl"},{"answer":"69","question":"id_user"}]
-		*/
 
         // Update Following Input API yang ada di repo AlgoTA
         $decoded_json = array();
@@ -65,7 +52,6 @@ class Pemeriksaan extends ResourceController
 
         $data = (object) $decoded_json;
         // Update Ends Here
-
 
         $diabetes   = $this->get_diabetes($data);
         $stroke     = $this->get_stroke($data);
@@ -242,7 +228,7 @@ class Pemeriksaan extends ResourceController
             $high++;
         }
 
-        if($data->riwayat_stroke  == 2){
+        if($data->riwayat_stroke  == 1){
             $low++;
         } else if($data->riwayat_stroke  == 3) {
             $medium++;
@@ -258,7 +244,7 @@ class Pemeriksaan extends ResourceController
             $high++;
         }
 
-        if($data->kadar_gula == 1){
+        if($data->kadar_gula == 3){
             $low++;
         } else if($data->kadar_gula == 2) {
             $medium++;
@@ -269,45 +255,45 @@ class Pemeriksaan extends ResourceController
         $hasil = "";
         //Use Complex Nested IF for Now
         if ($high >= 3) {
-            $hasil = "Tinggi";
+            $hasil = "Stroke Resiko Tinggi";
         } else {
             if ($high == 2){
                 if ($medium >= 3) {
-                    $hasil = "Tinggi";
+                    $hasil = "Stroke Resiko Tinggi";
                 } else if ($medium >= 2) {
-                    $hasil = "Menengah";
+                    $hasil = "Waspada Struk";
                 } else {
-                    $hasil = "Rendah";
+                    $hasil = "Stroke Resiko Rendah";
                 }
             }
             else if ($high == 1){
                 if ($medium >= 5) {
-                    $hasil = "Tinggi";
+                    $hasil = "Stroke Resiko Tinggi";
                 } else if ($medium >= 3) {
-                    $hasil = "Menengah";
+                    $hasil = "Waspada Struk";
                 } else {
-                    $hasil = "Rendah";
+                    $hasil = "Stroke Resiko Rendah";
                 }
             }
             else if ($medium >= 4) {
-                $hasil = "Menengah";
+                $hasil = "Waspada Struk";
             } else {
                 if ($medium == 3){
                     if ($low >= 3) {
-                        $hasil = "Menengah";
+                        $hasil = "Waspada Struk";
                     } else {
-                        $hasil = "Rendah";
+                        $hasil = "Stroke Resiko Rendah";
                     }
                 }
                 else if ($medium == 2){
                     if ($low >= 5) {
-                        $hasil = "Menengah";
+                        $hasil = "Waspada Struk";
                     } else {
-                        $hasil = "Rendah";
+                        $hasil = "Stroke Resiko Rendah";
                     }
                 }
                 else if ($low >= 6){
-                    $hasil = "Rendah";
+                    $hasil = "Stroke Resiko Rendah";
                 }
             }
         }
