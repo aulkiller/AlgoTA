@@ -364,13 +364,13 @@ class Pemeriksaan extends ResourceController
             $chol = 250;
         }
 
-        // if($data->{"Berapakah kadar kolesterol sehat (HDL) anda saat ini (mmol/L)"} == "< 30"){
-        //     $hdl = 20;
-        // }else if($data->{"Berapakah kadar kolesterol sehat (HDL) anda saat ini (mmol/L)"} == "30 - 50"){
-        //     $hdl = 40;
-        // }else{
-        //     $hdl = 60;
-        // }
+        if($data->{"Berapakah kadar kolesterol sehat (HDL) anda saat ini (mmol/L)"} == "< 30"){
+            $hdl = 20;
+        }else if($data->{"Berapakah kadar kolesterol sehat (HDL) anda saat ini (mmol/L)"} == "30 - 50"){
+            $hdl = 40;
+        }else{
+            $hdl = 60;
+        }
 
         $hdl = 40;
         $isBlack = False;
@@ -378,7 +378,7 @@ class Pemeriksaan extends ResourceController
         if ($age < 40 || $age > 79){
             return array(
                 'score' => -1,
-                'hasil' => "Tidak diketahui"
+                'hasil' => "Tidak Berisiko"
             );
         }
         $lnAge = log($age);

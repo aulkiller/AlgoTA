@@ -43,13 +43,13 @@
             $chol = 250;
         }
 
-        // if($response->{"Berapakah kadar kolesterol sehat (HDL) anda saat ini (mmol/L)"} == "< 30"){
-        //     $hdl = 20;
-        // }else if($response->{"Berapakah kadar kolesterol sehat (HDL) anda saat ini (mmol/L)"} == "30 - 50"){
-        //     $hdl = 40;
-        // }else{
-        //     $hdl = 60;
-        // }
+        if($response->{"Berapakah kadar kolesterol sehat (HDL) anda saat ini (mmol/L)"} == "< 30"){
+            $hdl = 20;
+        }else if($response->{"Berapakah kadar kolesterol sehat (HDL) anda saat ini (mmol/L)"} == "30 - 50"){
+            $hdl = 40;
+        }else{
+            $hdl = 60;
+        }
 
         // Asumsi hdl pasien sehat dan ras diabaikan
         $hdl = 40;

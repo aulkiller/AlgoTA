@@ -3,7 +3,7 @@
 // Function Requirement
 require_once('stroke.php');
 require_once('diabetes.php');
-require_once('cholesterol.php');
+require_once('kardiovaskular.php');
 
 // Input
 $answers = file_get_contents('contoh_input.json');
@@ -65,7 +65,7 @@ else{
     print("DM Sangat Rendah");
 }
 
-echo "<br> Tes Output Kolesterol <br>";
+echo "<br> Tes Output Kardiovaskular <br>";
 if ($kolesterol_res < 5){
     print("Tidak Berisiko");
 }

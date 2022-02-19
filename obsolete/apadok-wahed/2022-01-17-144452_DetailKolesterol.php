@@ -48,7 +48,13 @@ class DetailKolesterol extends Migration
                 'type' => 'INT',
                 'constraint' => '1',
                 'null' => true,
-                'comment' => '1 > 240, 2 = 200-239, 3 = < 200, 4 = Tidak diketahui'
+                'comment' => '1 = > 240, 2 = 200-239, 3 = < 200, 4 = Tidak diketahui'
+            ],
+            'kadar_hdl' => [
+                'type' => 'INT',
+                'constraint' => '1',
+                'null' => true,
+                'comment' => '1 = < 30, 2 = 30 - 50, 3 = > 50, 4 = Tidak diketahui'
             ],
             'score_kolesterol' => [
                 'type' => 'INT',
