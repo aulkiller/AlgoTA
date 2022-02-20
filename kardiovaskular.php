@@ -24,7 +24,13 @@
         }
 
         if ($response->{"Apakah anda pernah mengalami peningkatan kadar gula darah (saat hamil, sakit, pemeriksaan gula darah) ?"} == "Ya"){
-           $diabetic = True;
+            $diabetic = True;
+        }
+        if($response->{"Apakah memiliki anggota keluarga atau saudara yang terdiagnosa diabetes? (Diabetes 1 atau Diabetes 2)"} == "Ya (Orang tua, Kakak, Adik, Anak kandung)"){
+            $diabetic = True;
+        }
+        elseif($response->{"Apakah memiliki anggota keluarga atau saudara yang terdiagnosa diabetes? (Diabetes 1 atau Diabetes 2)"} == "Ya (Kakek/Nenek, Bibi, Paman, atau sepupu dekat)"){
+            $diabetic = True;
         }
             
         if($response->{"Masukkan tekanan darah anda saat ini:"} == "< 120/80"){

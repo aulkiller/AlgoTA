@@ -345,7 +345,13 @@ class Pemeriksaan extends ResourceController
         }
 
         if ($data->gula_darah == 1){
-           $diabetic = True;
+            $diabetic = True;
+        }
+        if($data->keturunan == 3){
+            $diabetic = True;
+        }
+        elseif($data->keturunan == 2){
+            $diabetic = True;
         }
 
         if($data->tekanan_darah == 3){
