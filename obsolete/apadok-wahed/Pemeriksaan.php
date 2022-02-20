@@ -171,19 +171,19 @@ class Pemeriksaan extends ResourceController
         }
 
         if($score > 20){
-            $diabetes_risk = "Sangat Tinggi";
+            $diabetes_risk = "Risiko Sangat Tinggi";
         }
         elseif($score >= 15){
-            $diabetes_risk = "Tinggi";
+            $diabetes_risk = "Risiko Tinggi";
         }
         elseif($score >= 12){
-            $diabetes_risk = "Sedang";
+            $diabetes_risk = "Risiko Sedang";
         }
         elseif($score >= 7){
-            $diabetes_risk = "Rendah";
+            $diabetes_risk = "Risiko Rendah";
         }
         else{
-            $diabetes_risk = "Sangat Rendah";
+            $diabetes_risk = "Risiko Sangat Rendah";
         }
 
         return array(
@@ -269,45 +269,45 @@ class Pemeriksaan extends ResourceController
         $hasil = "";
         //Use Complex Nested IF for Now
         if ($high >= 3) {
-            $hasil = "Tinggi";
+            $hasil = "Risiko Tinggi";
         } else {
             if ($high == 2){
                 if ($medium >= 3) {
-                    $hasil = "Tinggi";
+                    $hasil = "Risiko Tinggi";
                 } else if ($medium >= 2) {
-                    $hasil = "Menengah";
+                    $hasil = "Risiko Menengah";
                 } else {
-                    $hasil = "Rendah";
+                    $hasil = "Risiko Rendah";
                 }
             }
             else if ($high == 1){
                 if ($medium >= 5) {
-                    $hasil = "Tinggi";
+                    $hasil = "Risiko Tinggi";
                 } else if ($medium >= 3) {
-                    $hasil = "Menengah";
+                    $hasil = "Risiko Menengah";
                 } else {
-                    $hasil = "Rendah";
+                    $hasil = "Risiko Rendah";
                 }
             }
             else if ($medium >= 4) {
-                $hasil = "Menengah";
+                $hasil = "Risiko Menengah";
             } else {
                 if ($medium == 3){
                     if ($low >= 3) {
-                        $hasil = "Menengah";
+                        $hasil = "Risiko Menengah";
                     } else {
-                        $hasil = "Rendah";
+                        $hasil = "Risiko Rendah";
                     }
                 }
                 else if ($medium == 2){
                     if ($low >= 5) {
-                        $hasil = "Menengah";
+                        $hasil = "Risiko Menengah";
                     } else {
-                        $hasil = "Rendah";
+                        $hasil = "Risiko Rendah";
                     }
                 }
                 else if ($low >= 6){
-                    $hasil = "Rendah";
+                    $hasil = "Risiko Rendah";
                 }
             }
         }
@@ -345,13 +345,7 @@ class Pemeriksaan extends ResourceController
         }
 
         if ($data->gula_darah == 1){
-            $diabetic = True;
-        }
-        if($data->keturunan == 3){
-            $diabetic = True;
-        }
-        elseif($data->keturunan == 2){
-            $diabetic = True;
+           $diabetic = True;
         }
 
         if($data->tekanan_darah == 3){
