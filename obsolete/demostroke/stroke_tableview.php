@@ -1,6 +1,6 @@
 <table align="center" border='1' width="100%">
 <?php
-    $strJsonFileContents = file_get_contents("tes.json");
+    $strJsonFileContents = file_get_contents("sampel_fix_fisik.json");
     $array = json_decode($strJsonFileContents);
     echo "<tr>";
     echo "<td> No. </td>";
@@ -193,47 +193,76 @@
         //     $high++;
         // }
 
-        if ($high >= 3) {
-            $stroke_risk = "Stroke Resiko Tinggi";
+        $high = $response->{"high_score"};
+        $medium = $response->{"medium_score"};
+        $low = $response->{"low_score"};
+
+        // if ($high >= 3) {
+        //     $stroke_risk = "Risiko Tinggi";
+        // } else {
+        //     if ($high == 2){
+        //         if ($medium >= 3) {
+        //             $stroke_risk = "Risiko Tinggi";
+        //         } else if ($medium >= 2) {
+        //             $stroke_risk = "Risiko Menengah";
+        //         } else {
+        //             $stroke_risk = "Risiko Rendah";
+        //         }
+        //     }
+        //     else if ($high == 1){
+        //         if ($medium >= 5) {
+        //             $stroke_risk = "Risiko Tinggi";
+        //         } else if ($medium >= 3) {
+        //             $stroke_risk = "Risiko Menengah";
+        //         } else {
+        //             $stroke_risk = "Risiko Rendah";
+        //         }
+        //     }
+        //     else if ($medium >= 4) {
+        //         $stroke_risk = "Risiko Menengah";
+        //     } else {
+        //         if ($medium == 3){
+        //             if ($low >= 3) {
+        //                 $stroke_risk = "Risiko Menengah";
+        //             } else {
+        //                 $stroke_risk = "Risiko Rendah";
+        //             }
+        //         }
+        //         else if ($medium == 2){
+        //             if ($low >= 5) {
+        //                 $stroke_risk = "Risiko Menengah";
+        //             } else {
+        //                 $stroke_risk = "Risiko Rendah";
+        //             }
+        //         }
+        //         else if ($low >= 6){
+        //             $stroke_risk = "Risiko Rendah";
+        //         }
+        //     }
+        // }
+
+        // New Algo
+		if ($high >= 3) {
+            $stroke_risk = "Risiko Tinggi";
         } else {
             if ($high == 2){
-                if ($medium >= 3) {
-                    $stroke_risk = "Stroke Resiko Tinggi";
-                } else if ($medium >= 2) {
-                    $stroke_risk = "Waspada Struk";
+                if ($medium >= 2) {
+                    $stroke_risk = "Risiko Menengah";
                 } else {
-                    $stroke_risk = "Stroke Resiko Rendah";
+                    $stroke_risk = "Risiko Rendah";
                 }
             }
             else if ($high == 1){
-                if ($medium >= 5) {
-                    $stroke_risk = "Stroke Resiko Tinggi";
-                } else if ($medium >= 3) {
-                    $stroke_risk = "Waspada Struk";
+                if ($medium >= 3) {
+                    $stroke_risk = "Risiko Menengah";
                 } else {
-                    $stroke_risk = "Stroke Resiko Rendah";
+                    $stroke_risk = "Risiko Rendah";
                 }
             }
             else if ($medium >= 4) {
-                $stroke_risk = "Waspada Struk";
+                $stroke_risk = "Risiko Menengah";
             } else {
-                if ($medium == 3){
-                    if ($low >= 3) {
-                        $stroke_risk = "Waspada Struk";
-                    } else {
-                        $stroke_risk = "Stroke Resiko Rendah";
-                    }
-                }
-                else if ($medium == 2){
-                    if ($low >= 5) {
-                        $stroke_risk = "Waspada Struk";
-                    } else {
-                        $stroke_risk = "Stroke Resiko Rendah";
-                    }
-                }
-                else if ($low >= 6){
-                    $stroke_risk = "Stroke Resiko Rendah";
-                }
+                $stroke_risk = "Risiko Rendah";
             }
         }
 
