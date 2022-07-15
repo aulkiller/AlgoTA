@@ -6,14 +6,14 @@ require_once('diabetes.php');
 require_once('kardiovaskular.php');
 
 // Input
-$answers = file_get_contents('contoh_input.json');
+$answers = file_get_contents('contoh_input_lama.json');
 $decoded_jsonf = json_decode($answers, false);
 
 // Variable Convertion
-if (count($decoded_jsonf->data) != 18) {
-    echo "Wrong Data Count <br>";
-    return 0;
-}
+// if (count($decoded_jsonf->data) != 18) {
+//     echo "Wrong Data Count <br>";
+//     return 0;
+// }
 
 $decoded_json = array();
 
@@ -32,8 +32,8 @@ $decoded_jsonobj = (object) $decoded_json;
 // print($decoded_jsonobj->{"Tanggal Lahir"});
 
 
-$stroke_res = GetStrokeResult($decoded_jsonobj);
-$diabetes_res = GetDiabeteseResult($decoded_jsonobj);
+// $stroke_res = GetStrokeResult($decoded_jsonobj);
+// $diabetes_res = GetDiabeteseResult($decoded_jsonobj);
 $kolesterol_res = GetCholesterolResult($decoded_jsonobj);
 
 // Debug Result
@@ -69,10 +69,10 @@ echo "<br> Tes Output Kardiovaskular <br>";
 if ($kolesterol_res < 5){
     print("Tidak Berisiko");
 }
-else if ($kolesterol_res >= 5 and $kolesterol_res < 7.4){
+else if ($kolesterol_res >= 5 and $kolesterol_res <= 7.4){
     print("Risiko Rendah");
 }
-else if ($kolesterol_res >= 7.5 and $kolesterol_res < 19.9){
+else if ($kolesterol_res >= 7.5 and $kolesterol_res <= 19.9){
     print("Risiko Menengah");
 }
 else if ($kolesterol_res >= 20){

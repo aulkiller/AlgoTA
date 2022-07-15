@@ -2,7 +2,7 @@
     function GetCholesterolResult($response)
     {
         $year = date('Y');
-        $birth_day = explode("/", $response->{"Tanggal Lahir"});
+        $birth_day = explode("/", $responses->{"Tanggal Lahir"});
         $birth_year = $birth_day[2];
         $age = intval($year) - intval($birth_year);
 
@@ -11,58 +11,54 @@
         $hypertensive = False;
         $diabetic = False;
 
-        if($response->{"Jenis Kelamin"} == "Laki-laki"){
+        if($responses->{"Jenis Kelamin"} == "Laki-laki"){
             $isMale = True;
         }
 
-        if($response->{"Apakah anda merokok?"} == "Tidak Merokok"){
+        if($responses->{"Apakah anda merokok?"} == "Tidak Merokok"){
             $smoker = False;
         }
 
-        if ($response->{"Apakah mengonsumsi obat anti hipertensi secara reguler?"} == "Ya"){
+        if ($responses->{"Apakah mengonsumsi obat anti hipertensi secara reguler?"} == "Ya"){
             $hypertensive = True;
         }
 
-        if ($response->{"Apakah anda pernah mengalami peningkatan kadar gula darah (saat hamil, sakit, pemeriksaan gula darah) ?"} == "Ya"){
+        if ($responses->{"Apakah anda pernah mengalami peningkatan kadar gula darah (saat hamil, sakit, pemeriksaan gula darah) ?"} == "Ya"){
             $diabetic = True;
         }
-        if($response->{"Apakah memiliki anggota keluarga atau saudara yang terdiagnosa diabetes? (Diabetes 1 atau Diabetes 2)"} == "Ya (Orang tua, Kakak, Adik, Anak kandung)"){
+        if($responses->{"Apakah memiliki anggota keluarga atau saudara yang terdiagnosa diabetes? (Diabetes 1 atau Diabetes 2)"} == "Ya (Orang tua, Kakak, Adik, Anak kandung)"){
             $diabetic = True;
         }
-        elseif($response->{"Apakah memiliki anggota keluarga atau saudara yang terdiagnosa diabetes? (Diabetes 1 atau Diabetes 2)"} == "Ya (Kakek/Nenek, Bibi, Paman, atau sepupu dekat)"){
+        elseif($responses->{"Apakah memiliki anggota keluarga atau saudara yang terdiagnosa diabetes? (Diabetes 1 atau Diabetes 2)"} == "Ya (Kakek/Nenek, Bibi, Paman, atau sepupu dekat)"){
             $diabetic = True;
         }
             
-        if($response->{"Masukkan tekanan darah anda saat ini:"} == "< 120/80"){
+        if($responses->{"Masukkan tekanan darah anda saat ini:"} == "< 120/80"){
             $sbp = 110;
-        }else if($response->{"Masukkan tekanan darah anda saat ini:"} == "120 - 139 / 80 - 89"){
+        }else if($responses->{"Masukkan tekanan darah anda saat ini:"} == "120 - 139 / 80 - 89"){
             $sbp = 130;
         }else{
             $sbp = 150;
         }
 
-        if($response->{"Berapa kadar kolesterol anda saat ini? (mmol/L)"} == "< 200"){
+        if($responses->{"Berapa kadar kolesterol anda saat ini? (mmol/L)"} == "< 200"){
             $chol = 190;
-        }else if($response->{"Berapa kadar kolesterol anda saat ini? (mmol/L)"} == "200 - 239"){
+        }else if($responses->{"Berapa kadar kolesterol anda saat ini? (mmol/L)"} == "200 - 239"){
             $chol = 220;
         }else{
             $chol = 250;
         }
 
-        if($response->{"Berapakah kadar kolesterol sehat (HDL) anda saat ini (mmol/L)"} == "< 30"){
-            $hdl = 20;
-        }else if($response->{"Berapakah kadar kolesterol sehat (HDL) anda saat ini (mmol/L)"} == "30 - 50"){
+        if($responses->{"Berapakah kadar kolesterol sehat (HDL) anda saat ini (mmol/L)"} == "> 50"){
+            $hdl = 60;
+        }else if($responses->{"Berapakah kadar kolesterol sehat (HDL) anda saat ini (mmol/L)"} == "30 - 50"){
             $hdl = 40;
         }else{
-            $hdl = 60;
+            $hdl = 20;
         }
 
-        // Asumsi hdl pasien sehat dan ras diabaikan
-        $hdl = 40;
-        $isBlack = False;
-
         if ($age < 40 || $age > 79){
-            return -1;
+            return 0;
         }
         $lnAge = log($age);
         $lnTotalChol = log($chol);
@@ -79,36 +75,15 @@
         }
         $ageTotalChol = $lnAge * $lnTotalChol;
         $ageHdl = $lnAge * $lnHdl;
-        $agetSbp = $lnAge * $trlnsbp;
-        $agentSbp = $lnAge * $ntlnsbp;
         if($smoker == True){
             $ageSmoke = $lnAge;
         }else{
             $ageSmoke = 0;
         }
-        if ($isBlack && !$isMale){
-            $s010Ret = 0.95334;
-            $mnxbRet = 86.6081;
-            $predictRet = (
-                17.1141 * $lnAge
-                + 0.9396 * $lnTotalChol
-                + -18.9196 * $lnHdl
-                + 4.4748 * $ageHdl
-                + 29.2907 * $trlnsbp
-                + -6.4321 * $agetSbp
-                + 27.8197 * $ntlnsbp
-                + -6.0873 * $agentSbp
-            );
-            if($smoker == True){
-                $predictRet += 0.6908;
-            }
-            if($diabetic == True){
-                $predictRet += 0.8738;
-            }
-        }
-        else if (!$isBlack && !$isMale){
+
+        if (!$isMale){
             $s010Ret = 0.96652;
-            $mnxbRet = -29.1817;
+            $mnxbRet = -29.18;
             $predictRet = (
                 -29.799 * $lnAge
                 + 4.884 * $lnAge ** 2
@@ -127,26 +102,9 @@
                 $predictRet += 0.661;
             }
         }
-        else if ($isBlack && $isMale){
-            $s010Ret = 0.89536;
-            $mnxbRet = 19.5425;
-            $predictRet = (
-                2.469 * $lnAge
-                + 0.302 * $lnTotalChol
-                + -0.307 * $lnHdl
-                + 1.916 * $trlnsbp
-                + 1.809 * $ntlnsbp
-            );
-            if($smoker == True){
-                $predictRet += 0.549;
-            }
-            if($diabetic == True){
-                $predictRet += 0.645;
-            }
-        }
         else{
             $s010Ret = 0.91436;
-            $mnxbRet = 61.1816;
+            $mnxbRet = 61.18;
             $predictRet = (
                 12.344 * $lnAge
                 + 11.853 * $lnTotalChol

@@ -17,6 +17,7 @@
         {"answer":"Setiap Hari","question":"Seberapa sering anda makan sayuran, buah-buahan atau beri?"},
         {"answer":"Tidak","question":"Apakah mengonsumsi obat anti hipertensi secara reguler?"},
         {"answer":"Tidak","question":"Apakah memiliki anggota keluarga atau saudara yang terdiagnosa diabetes? (Diabetes 1 atau Diabetes 2)"},
+        {"answer":"< 30","question":"Berapakah kadar kolesterol sehat (HDL) anda saat ini (mmol/L)"},
         {"answer":"4","question":"ID"}
     ]
 }

@@ -1,6 +1,6 @@
 <table align="center" border='1' width="100%">
 <?php
-    $strJsonFileContents = file_get_contents("sampel_fix_fisik.json");
+    $strJsonFileContents = file_get_contents("screening_2.json");
     $array = json_decode($strJsonFileContents);
     echo "<tr>";
     echo "<td> No. </td>";
@@ -240,31 +240,6 @@
         //         }
         //     }
         // }
-
-        // New Algo
-		if ($high >= 3) {
-            $stroke_risk = "Risiko Tinggi";
-        } else {
-            if ($high == 2){
-                if ($medium >= 2) {
-                    $stroke_risk = "Risiko Menengah";
-                } else {
-                    $stroke_risk = "Risiko Rendah";
-                }
-            }
-            else if ($high == 1){
-                if ($medium >= 3) {
-                    $stroke_risk = "Risiko Menengah";
-                } else {
-                    $stroke_risk = "Risiko Rendah";
-                }
-            }
-            else if ($medium >= 4) {
-                $stroke_risk = "Risiko Menengah";
-            } else {
-                $stroke_risk = "Risiko Rendah";
-            }
-        }
 
 
 
