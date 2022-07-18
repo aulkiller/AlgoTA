@@ -21,3 +21,45 @@
         {"answer":"4","question":"ID"}
     ]
 }
+[
+    {
+        "answer": "Laki-laki",
+        "question": "jenis_kelamin"
+    },
+    {
+        "answer": "7/8/1983",
+        "question": "tanggal_lahir"
+    },
+    {
+        "answer": "3",
+        "question": "merokok"
+    },
+    {
+        "answer": "1",
+        "question": "tekanan_darah"
+    },
+    {
+        "answer": "2",
+        "question": "gula_darah"
+    },
+    {
+        "answer": "1",
+        "question": "kadar_kolesterol"
+    },
+    {
+        "answer": "1",
+        "question": "obat_hipertensi"
+    },
+    {
+        "answer": "1",
+        "question": "keturunan"
+    },
+    {
+        "answer": "1",
+        "question": "kolesterol_hdl"
+    },
+    {
+        "answer": "2",
+        "question": "id_user"
+    }
+]
